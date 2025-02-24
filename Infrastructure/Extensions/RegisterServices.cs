@@ -1,6 +1,7 @@
 using Domain.Entites;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
+using Infrastructure.Profiles;
 using Infrastructure.Seed;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ public static class RegisterServices
         services.AddScoped<Seeder>();
         services.AddDbContext<DataContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+        services.AddAutoMapper(typeof(EntityProfile));
 
         services.AddScoped<IAuthService, AuthService>();
     }
